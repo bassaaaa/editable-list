@@ -1,11 +1,11 @@
-import { FC } from "react";
-import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
-import { Item } from "../types";
-import DragHandleRoundedIcon from "@mui/icons-material/DragHandleRounded";
-import { EditableText } from "./EditableText";
-import { ClickButton } from "./ClickButton";
-import { useItemListContext } from "../provider/ItemListProvider";
+import { FC } from 'react';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+import { Item } from '../types';
+import DragHandleRoundedIcon from '@mui/icons-material/DragHandleRounded';
+import { EditableText } from './EditableText';
+import { ClickButton } from './ClickButton';
+import { useItemListContext } from '../provider/ItemListProvider';
 
 type Props = {
   item: Item;
@@ -14,12 +14,17 @@ type Props = {
 export const SortableItem: FC<Props> = (props) => {
   const { item } = props;
   const { itemList, setItemList } = useItemListContext();
-  const { attributes, listeners, setNodeRef, transform, transition, setActivatorNodeRef } = useSortable({
-    id: item.id,
-  });
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    setActivatorNodeRef,
+  } = useSortable({ id: item.id });
 
-  const onClickDelete = (id: string) => {
-    const newItemList = [...itemList].filter((item) => item.id !== id);
+  const onClickDelete = (index: number) => {
+    const newItemList = [...itemList].filter((item) => item.id !== index);
     setItemList(newItemList);
   };
 

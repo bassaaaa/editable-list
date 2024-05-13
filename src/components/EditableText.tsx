@@ -1,9 +1,9 @@
-import { FC, ChangeEvent, useState } from "react";
-import EditRoundedIcon from "@mui/icons-material/EditRounded";
-import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
-import { ClickButton } from "./ClickButton";
-import { useItemListContext } from "../provider/ItemListProvider";
-import { Item } from "../types";
+import { FC, ChangeEvent, useState } from 'react';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import SaveRoundedIcon from '@mui/icons-material/SaveRounded';
+import { ClickButton } from './ClickButton';
+import { useItemListContext } from '../provider/ItemListProvider';
+import { Item } from '../types';
 
 type Props = {
   item: Item;
@@ -11,16 +11,16 @@ type Props = {
 
 export const EditableText: FC<Props> = (props) => {
   const { item } = props;
-  const [text, setText] = useState<string>(item.text);
+  const [text, setText] = useState<string>(item.name);
   const [editing, setEditing] = useState<boolean>(false);
   const { itemList, setItemList } = useItemListContext();
 
-  const onClickEdit = (id: string) => {
+  const onClickEdit = (id: number) => {
     setEditing((prev) => !prev);
     const newItemList = [...itemList];
     const itemToUpdate = newItemList.find((item) => item.id === id);
     if (itemToUpdate) {
-      itemToUpdate.text = text;
+      itemToUpdate.name = text;
     }
     setItemList(newItemList);
     console.log(itemList);
@@ -31,7 +31,7 @@ export const EditableText: FC<Props> = (props) => {
   };
 
   const onInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key !== "Enter") return; // Enter以外は何もしない
+    if (event.key !== 'Enter') return; // Enter以外は何もしない
     event.preventDefault(); // Enterキーが押されたときにページがリロードされたり、inputが実行されることを防止
     onClickEdit(item.id);
   };
