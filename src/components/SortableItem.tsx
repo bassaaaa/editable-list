@@ -30,13 +30,13 @@ export const SortableItem: FC<Props> = (props) => {
 
   return (
     <div
-      className="flex border border-gray-300 bg-white rounded-md p-2 items-center min-w-full"
+      className="flex border bg-base-100 rounded-md p-2 items-center min-w-full"
       ref={setNodeRef}
       style={{ transform: CSS.Transform.toString(transform), transition }}
     >
       {/* 並べ替えアイコン */}
       <div ref={setActivatorNodeRef} {...attributes} {...listeners}>
-        <DragHandleRoundedIcon className="text-gray-300 cursor-move" />
+        <DragHandleRoundedIcon className="cursor-move" />
       </div>
       <div className="flex pl-2 w-full items-center min-w-0">
         <EditableText item={item} />

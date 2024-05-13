@@ -9,7 +9,10 @@ export const ClickButton: FC<Props> = (props: Props) => {
   const { onClick, children } = props;
 
   return (
-    <button className="btn btn-sm min-w-0" onClick={onClick}>
+    <button
+      className="btn btn-outline btn-sm min-w-0 bg-base-100"
+      onClick={onClick}
+    >
       {children}
     </button>
   );

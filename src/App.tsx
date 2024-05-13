@@ -66,7 +66,7 @@ export const App: FC = () => {
   };
 
   return (
-    <div className="max-w-lg p-4">
+    <div className="max-w-screen-lg p-4 bg-base-200 rounded-md mx-auto">
       <InputForm
         placeholder="追加する項目を入力"
         inputText={inputText}
