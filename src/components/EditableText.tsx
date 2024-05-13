@@ -15,7 +15,7 @@ export const EditableText: FC<Props> = (props) => {
   const [editing, setEditing] = useState<boolean>(false);
   const { itemList, setItemList } = useItemListContext();
 
-  const onClickEdit = (id: number) => {
+  const onClickEdit = (id: string) => {
     setEditing((prev) => !prev);
     const newItemList = [...itemList];
     const itemToUpdate = newItemList.find((item) => item.id === id);

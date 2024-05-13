@@ -19,6 +19,7 @@ import { SortableItem } from './components/SortableItem';
 import { Item } from './types';
 import { InputForm } from './components/InputForm';
 import { useItemListContext } from './provider/ItemListProvider';
+import { v4 as uuidv4 } from 'uuid';
 
 export const App: FC = () => {
   const [inputText, setInputText] = useState<string>('');
@@ -50,7 +51,7 @@ export const App: FC = () => {
   const onClickInputButton = () => {
     if (inputText === '') return;
     const newItem: Item = {
-      id: new Date().getTime(),
+      id: uuidv4(),
       name: inputText,
     };
     const newitemList = [...itemList, newItem];

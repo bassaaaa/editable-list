@@ -23,8 +23,8 @@ export const SortableItem: FC<Props> = (props) => {
     setActivatorNodeRef,
   } = useSortable({ id: item.id });
 
-  const onClickDelete = (index: number) => {
-    const newItemList = [...itemList].filter((item) => item.id !== index);
+  const onClickDelete = (id: string) => {
+    const newItemList = [...itemList].filter((item) => item.id !== id);
     setItemList(newItemList);
   };
 
