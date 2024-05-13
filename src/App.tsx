@@ -1,4 +1,4 @@
-import { FC, useState, SetStateAction, KeyboardEvent } from 'react';
+import { FC, useState, SetStateAction, KeyboardEvent } from "react";
 import {
   DndContext,
   closestCenter,
@@ -7,21 +7,22 @@ import {
   useSensor,
   useSensors,
   DragEndEvent,
-} from '@dnd-kit/core';
+} from "@dnd-kit/core";
 import {
   arrayMove,
   SortableContext,
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
-} from '@dnd-kit/sortable';
-import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
-import { SortableItem } from './components/SortableItem';
-import { Item } from './types';
-import { InputForm } from './components/InputForm';
-import { useItemListContext } from './provider/ItemListProvider';
+} from "@dnd-kit/sortable";
+import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
+import { SortableItem } from "./components/SortableItem";
+import { Item } from "./types";
+import { InputForm } from "./components/InputForm";
+import { useItemListContext } from "./provider/ItemListProvider";
+import { v4 as uuidv4 } from "uuid";
 
 export const App: FC = () => {
-  const [inputText, setInputText] = useState<string>('');
+  const [inputText, setInputText] = useState<string>("");
   const { itemList, setItemList } = useItemListContext();
 
   const sensors = useSensors(
@@ -41,25 +42,23 @@ export const App: FC = () => {
     }
   };
 
-  const onChangeInput = (event: {
-    target: { value: SetStateAction<string> };
-  }) => {
+  const onChangeInput = (event: { target: { value: SetStateAction<string> } }) => {
     setInputText(event.target.value);
   };
 
   const onClickInputButton = () => {
-    if (inputText === '') return;
+    if (inputText === "") return;
     const newItem: Item = {
-      id: new Date().getTime(),
-      name: inputText,
+      id: uuidv4(),
+      text: inputText,
     };
-    const newitemList = [...itemList, newItem];
-    setItemList(newitemList);
-    setInputText('');
+    const newItemList = [...itemList, newItem];
+    setItemList(newItemList);
+    setInputText("");
   };
 
   const onInputKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key !== 'Enter') return; // Enter以外は何もしない
+    if (event.key !== "Enter") return; // Enter以外は何もしない
     event.preventDefault(); // Enterキーが押されたときにページがリロードされたり、inputが実行されることを防止
     onClickInputButton();
   };
@@ -79,10 +78,7 @@ export const App: FC = () => {
         onDragEnd={handleDragEnd}
         modifiers={[restrictToVerticalAxis]} // 垂直軸のみに動きを制限
       >
-        <SortableContext
-          items={itemList}
-          strategy={verticalListSortingStrategy}
-        >
+        <SortableContext items={itemList} strategy={verticalListSortingStrategy}>
           <ul className="flex flex-col gap-2 w-full mx-auto mt-2">
             {itemList.map((item) => (
               <SortableItem key={item.id} item={item} />
