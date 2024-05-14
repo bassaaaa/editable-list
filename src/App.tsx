@@ -47,13 +47,12 @@ export const App: FC = () => {
   };
 
   const onClickInputButton = () => {
-    if (inputText === '') return;
+    if (inputText.trim() === '') return; // 空の入力を防止
     const newItem: Item = {
       id: uuidv4(),
-      name: inputText,
+      name: inputText.trim(),
     };
-    const newitemList = [...itemList, newItem];
-    setItemList(newitemList);
+    setItemList((prevItemList) => [...prevItemList, newItem]);
     setInputText('');
   };
 
