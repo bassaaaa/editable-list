@@ -11,9 +11,8 @@ type Props = {
   item: Item;
 };
 
-export const SortableItem: FC<Props> = (props) => {
-  const { item } = props;
-  const { itemList, setItemList } = useItemListContext();
+export const SortableItem: FC<Props> = ({ item }) => {
+  const { removeItem } = useItemListContext();
   const {
     attributes,
     listeners,
@@ -22,11 +21,6 @@ export const SortableItem: FC<Props> = (props) => {
     transition,
     setActivatorNodeRef,
   } = useSortable({ id: item.id });
-
-  const onClickDelete = (id: string) => {
-    const newItemList = [...itemList].filter((item) => item.id !== id);
-    setItemList(newItemList);
-  };
 
   return (
     <div
@@ -40,7 +34,7 @@ export const SortableItem: FC<Props> = (props) => {
       </div>
       <div className="flex pl-2 w-full items-center min-w-0">
         <EditableText item={item} />
-        <ClickButton onClick={() => onClickDelete(item.id)}>削除</ClickButton>
+        <ClickButton onClick={() => removeItem(item.id)}>削除</ClickButton>
       </div>
     </div>
   );
