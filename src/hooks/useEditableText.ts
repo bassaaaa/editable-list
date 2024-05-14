@@ -1,7 +1,7 @@
 import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from 'react';
 import { Item } from '../types';
-import { useEditStateContext } from '../provider/EditStateProvider';
 import { useItemListContext } from './useItemListContext';
+import { useEditStateContext } from './useEditState';
 
 export const useEditableText = (item: Item) => {
   const [text, setText] = useState<string>(item.text); // テキストの状態
