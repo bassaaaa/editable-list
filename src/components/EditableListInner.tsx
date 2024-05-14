@@ -1,4 +1,4 @@
-import { FC, useState, ChangeEvent, KeyboardEvent } from 'react';
+import { FC } from 'react';
 import {
   DndContext,
   closestCenter,
@@ -24,8 +24,7 @@ type Props = {
 };
 
 export const EditableListInner: FC<Props> = ({ initialTitle }) => {
-  const [inputText, setInputText] = useState<string>('');
-  const { itemList, setItemList, addItem } = useItemListContext();
+  const { itemList, setItemList } = useItemListContext();
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -44,35 +43,10 @@ export const EditableListInner: FC<Props> = ({ initialTitle }) => {
     }
   };
 
-  // 入力フォームの変更を処理する
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setInputText(event.target.value);
-  };
-
-  // 新しい項目を追加する
-  const handleAddItem = () => {
-    if (inputText.trim() === '') return; // 空の入力を防止
-    addItem(inputText);
-    setInputText('');
-  };
-
-  // Enterキーが押されたときにも項目を追加する
-  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key !== 'Enter') return; // Enter以外は何もしない
-    event.preventDefault(); // Enterキーが押されたときにページがリロードされたり、inputが実行されることを防止
-    handleAddItem();
-  };
-
   return (
     <div className="w-full p-6 bg-base-200 rounded-md mx-auto">
       <h1 className="text-2xl font-bold text-center mb-6">{initialTitle}</h1>
-      <InputForm
-        placeholder="追加する項目を入力"
-        inputText={inputText}
-        onChange={handleChange}
-        onClick={handleAddItem}
-        onKeyDown={handleKeyDown}
-      />
+      <InputForm placeholder="追加する項目を入力" />
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
