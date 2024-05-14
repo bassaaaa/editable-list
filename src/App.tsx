@@ -42,11 +42,13 @@ export const App: FC = () => {
     }
   };
 
-  const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
+  // 入力フォームの変更を処理する
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInputText(event.target.value);
   };
 
-  const onClickInputButton = () => {
+  // 新しい項目を追加する
+  const handleAddItem = () => {
     if (inputText.trim() === '') return; // 空の入力を防止
     const newItem: Item = {
       id: uuidv4(),
@@ -56,10 +58,11 @@ export const App: FC = () => {
     setInputText('');
   };
 
-  const onInputKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+  // Enterキーが押されたときにも項目を追加する
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key !== 'Enter') return; // Enter以外は何もしない
     event.preventDefault(); // Enterキーが押されたときにページがリロードされたり、inputが実行されることを防止
-    onClickInputButton();
+    handleAddItem();
   };
 
   return (
@@ -67,9 +70,9 @@ export const App: FC = () => {
       <InputForm
         placeholder="追加する項目を入力"
         inputText={inputText}
-        onChange={(event) => onChangeInput(event)}
-        onClick={onClickInputButton}
-        onKeyDown={(event) => onInputKeyDown(event)}
+        onChange={handleChange}
+        onClick={handleAddItem}
+        onKeyDown={handleKeyDown}
       />
       <DndContext
         sensors={sensors}
