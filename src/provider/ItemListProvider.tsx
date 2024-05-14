@@ -4,37 +4,28 @@ import {
   ReactNode,
   SetStateAction,
   createContext,
-  useContext,
   useState,
 } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Item } from '../types';
 
-type Props = {
+type ContextType = {
+  itemList: Item[];
+  setItemList: Dispatch<SetStateAction<Item[]>>;
+  addItem: (text: string) => void;
+  removeItem: (id: string) => void;
+};
+
+type ProviderType = {
   initialItems: Item[];
   children: ReactNode;
 };
 
-export const ItemListContext = createContext(
-  {} as {
-    itemList: Item[];
-    setItemList: Dispatch<SetStateAction<Item[]>>;
-    addItem: (text: string) => void;
-    removeItem: (id: string) => void;
-  }
+export const ItemListContext = createContext<ContextType | undefined>(
+  undefined
 );
 
-export const useItemListContext = () => {
-  const context = useContext(ItemListContext);
-  if (!context) {
-    throw new Error(
-      'useItemLListContext must be used within an ItemListProvider'
-    );
-  }
-  return context;
-};
-
-export const ItemListProvider: FC<Props> = (props) => {
+export const ItemListProvider: FC<ProviderType> = (props) => {
   const { initialItems, children } = props;
   const [itemList, setItemList] = useState<Item[]>(initialItems);
   const addItem = (text: string) => {

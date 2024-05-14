@@ -17,7 +17,7 @@ import {
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import { InputForm } from './InputForm';
 import { SortableItem } from './ListItem';
-import { useItemListContext } from '../provider/ItemListProvider';
+import { useItemListContext } from '../hooks/useItemListContext';
 
 type Props = {
   initialTitle: string;

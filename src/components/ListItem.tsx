@@ -5,7 +5,7 @@ import { Item } from '../types';
 import DragHandleRoundedIcon from '@mui/icons-material/DragHandleRounded';
 import { EditableText } from './EditableText';
 import { ClickButton } from './ClickButton';
-import { useItemListContext } from '../provider/ItemListProvider';
+import { useItemListContext } from '../hooks/useItemListContext';
 
 type Props = {
   item: Item;
