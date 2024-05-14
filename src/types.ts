@@ -4,6 +4,7 @@ export type Item = {
 };
 
 export type ItemList = {
+  id: string;
   title: string;
   items: Item[];
 };
