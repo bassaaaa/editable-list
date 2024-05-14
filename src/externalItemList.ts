@@ -8,9 +8,9 @@ const list: string[] = [
   'アイテム5',
 ];
 
-export const externalItemList = list.map((name) => {
+export const externalItemList = list.map((text) => {
   return {
     id: uuidv4(),
-    name,
+    text,
   };
 });

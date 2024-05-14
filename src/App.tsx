@@ -52,7 +52,7 @@ export const App: FC = () => {
     if (inputText.trim() === '') return; // 空の入力を防止
     const newItem: Item = {
       id: uuidv4(),
-      name: inputText.trim(),
+      text: inputText.trim(),
     };
     setItemList((prevItemList) => [...prevItemList, newItem]);
     setInputText('');
