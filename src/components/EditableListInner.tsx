@@ -15,10 +15,8 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
-import { Item } from '../types';
-import { v4 as uuidv4 } from 'uuid';
 import { InputForm } from './InputForm';
-import { SortableItem } from './SortableItem';
+import { SortableItem } from './ListItem';
 import { useItemListContext } from '../provider/ItemListProvider';
 
 type Props = {
@@ -27,7 +25,7 @@ type Props = {
 
 export const EditableListInner: FC<Props> = ({ initialTitle }) => {
   const [inputText, setInputText] = useState<string>('');
-  const { itemList, setItemList } = useItemListContext();
+  const { itemList, setItemList, addItem } = useItemListContext();
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -54,11 +52,7 @@ export const EditableListInner: FC<Props> = ({ initialTitle }) => {
   // 新しい項目を追加する
   const handleAddItem = () => {
     if (inputText.trim() === '') return; // 空の入力を防止
-    const newItem: Item = {
-      id: uuidv4(),
-      text: inputText.trim(),
-    };
-    setItemList((prevItemList) => [...prevItemList, newItem]);
+    addItem(inputText);
     setInputText('');
   };
 
