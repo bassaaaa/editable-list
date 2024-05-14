@@ -1,4 +1,4 @@
-import { FC, useState, SetStateAction, KeyboardEvent } from 'react';
+import { FC, useState, ChangeEvent, KeyboardEvent } from 'react';
 import {
   DndContext,
   closestCenter,
@@ -42,9 +42,7 @@ export const App: FC = () => {
     }
   };
 
-  const onChangeInput = (event: {
-    target: { value: SetStateAction<string> };
-  }) => {
+  const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     setInputText(event.target.value);
   };
 

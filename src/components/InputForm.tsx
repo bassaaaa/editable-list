@@ -1,10 +1,10 @@
-import { FC, SetStateAction, KeyboardEvent } from 'react';
+import { FC, ChangeEvent, KeyboardEvent } from 'react';
 import { ClickButton } from './ClickButton';
 
 type Props = {
   placeholder: string;
   inputText: string;
-  onChange: (event: { target: { value: SetStateAction<string> } }) => void;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onClick: () => void;
   onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
 };
