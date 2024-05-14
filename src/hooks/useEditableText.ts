@@ -20,6 +20,8 @@ export const useEditableText = (item: Item) => {
   const handleSaveButtonClick = (id: string) => {
     updateItemName(id);
     setEditingItemId(null);
+    setText(text.trim() === '' ? originalText.current : text); // 空の場合は編集前のテキストに戻す
+    originalText.current = text; // 編集前のテキストを更新
   };
 
   // アイテムの名前を更新
