@@ -21,7 +21,15 @@ export const ItemListContext = createContext(
   }
 );
 
-export const useItemListContext = () => useContext(ItemListContext);
+export const useItemListContext = () => {
+  const context = useContext(ItemListContext);
+  if (!context) {
+    throw new Error(
+      'useItemLListContext must be used within an ItemListProvider'
+    );
+  }
+  return context;
+};
 
 export const ItemListProvider: FC<Props> = ({ children }) => {
   const [itemList, setItemList] = useState<Item[]>(externalItemList);
