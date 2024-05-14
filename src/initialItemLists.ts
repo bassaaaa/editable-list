@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import { ItemList } from './types';
 
 const list: string[] = [
   'アイテム1',
@@ -8,9 +9,10 @@ const list: string[] = [
   'アイテム5',
 ];
 
-export const externalItemList = list.map((text) => {
-  return {
+export const initialItemList: ItemList = {
+  title: 'リストタイトル',
+  items: list.map((text) => ({
     id: uuidv4(),
     text,
-  };
-});
+  })),
+};

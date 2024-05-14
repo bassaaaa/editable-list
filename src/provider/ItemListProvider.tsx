@@ -8,9 +8,9 @@ import {
   useState,
 } from 'react';
 import { Item } from '../types';
-import { externalItemList } from '../externalItemList';
 
 type Props = {
+  initialItems: Item[];
   children: ReactNode;
 };
 
@@ -31,8 +31,9 @@ export const useItemListContext = () => {
   return context;
 };
 
-export const ItemListProvider: FC<Props> = ({ children }) => {
-  const [itemList, setItemList] = useState<Item[]>(externalItemList);
+export const ItemListProvider: FC<Props> = (props) => {
+  const { initialItems, children } = props;
+  const [itemList, setItemList] = useState<Item[]>(initialItems);
 
   return (
     <ItemListContext.Provider value={{ itemList, setItemList }}>
