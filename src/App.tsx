@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { EditableList } from './components/EditableList';
-import { initialItemLists } from './initialItemLists';
+import { initialItemLists } from './data/initialItemLists';
 
 export const App: FC = () => {
   return (
