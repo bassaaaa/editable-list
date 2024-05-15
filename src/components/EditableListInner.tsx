@@ -16,7 +16,7 @@ import {
 } from '@dnd-kit/sortable';
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import { InputWithButton } from './InputWithButton';
-import { SortableItem } from './ListItem';
+import { SortableListItem } from './SortableListItem';
 import { useItemListContext } from '../hooks/useItemListContext';
 
 type Props = {
@@ -59,7 +59,7 @@ export const EditableListInner: FC<Props> = ({ initialTitle }) => {
         >
           <ul className="flex flex-col gap-2 w-full mx-auto mt-2">
             {itemList.map((item) => (
-              <SortableItem key={item.id} item={item} />
+              <SortableListItem key={item.id} item={item} />
             ))}
           </ul>
         </SortableContext>
