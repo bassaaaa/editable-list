@@ -8,7 +8,8 @@ export const App: FC = () => {
       {initialItemLists.map((initialItemList) => (
         <EditableList
           key={initialItemList.id}
-          initialItemList={initialItemList}
+          title={initialItemList.title}
+          items={initialItemList.items}
         />
       ))}
     </div>
