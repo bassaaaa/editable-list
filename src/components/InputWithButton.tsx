@@ -1,14 +1,14 @@
 import { FC } from 'react';
-import { ClickButton } from '../ClickButton';
-import { useInputForm } from './hooks';
+import { useInputWithButton } from '../hooks/useInputWithButton';
+import { ClickButton } from './ClickButton';
 
 type Props = {
   placeholder: string;
 };
 
-export const InputForm: FC<Props> = ({ placeholder }) => {
+export const InputWithButton: FC<Props> = ({ placeholder }) => {
   const { inputText, handleChange, handleKeyDown, handleAddItem } =
-    useInputForm();
+    useInputWithButton();
 
   return (
     <div className="flex gap-2">

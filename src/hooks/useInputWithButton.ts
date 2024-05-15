@@ -1,7 +1,7 @@
 import { ChangeEvent, KeyboardEvent, useState } from 'react';
-import { useItemListContext } from '../../hooks/useItemListContext';
+import { useItemListContext } from './useItemListContext';
 
-export const useInputForm = () => {
+export const useInputWithButton = () => {
   const [inputText, setInputText] = useState<string>('');
   const { addItem } = useItemListContext();
 

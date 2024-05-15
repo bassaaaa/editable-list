@@ -15,7 +15,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
-import { InputForm } from './InputForm';
+import { InputWithButton } from './InputWithButton';
 import { SortableItem } from './ListItem';
 import { useItemListContext } from '../hooks/useItemListContext';
 
@@ -46,7 +46,7 @@ export const EditableListInner: FC<Props> = ({ initialTitle }) => {
   return (
     <div className="w-full p-6 bg-base-200 rounded-md mx-auto">
       <h1 className="text-2xl font-bold text-center mb-6">{initialTitle}</h1>
-      <InputForm placeholder="追加する項目を入力" />
+      <InputWithButton placeholder="追加する項目を入力" />
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
