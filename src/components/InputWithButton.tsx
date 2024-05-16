@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useInputWithButton } from '../hooks/useInputWithButton';
-import { ClickButton } from './ClickButton';
+import { ButtonOutline } from './Button/ButtonOutline';
 
 type Props = {
   placeholder: string;
@@ -20,7 +20,7 @@ export const InputWithButton: FC<Props> = ({ placeholder }) => {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
-      <ClickButton onClick={handleAddItem}>追加</ClickButton>
+      <ButtonOutline onClick={handleAddItem}>追加</ButtonOutline>
     </div>
   );
 };

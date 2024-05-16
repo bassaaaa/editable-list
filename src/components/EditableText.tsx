@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import SaveRoundedIcon from '@mui/icons-material/SaveRounded';
-import { ClickButton } from './ClickButton';
 import { Item } from '../types';
 import { useEditableText } from '../hooks/useEditableText';
+import { ButtonGhost } from './Button/ButtonGhost';
 
 type Props = {
   item: Item;
@@ -36,19 +36,17 @@ export const EditableText: FC<Props> = ({ item }) => {
             onKeyDown={handleInputKeyDown}
             ref={(input) => handleInputFocus(input)}
           />
-          <ClickButton onClick={() => handleSaveButtonClick(item.id)}>
+          <ButtonGhost onClick={() => handleSaveButtonClick(item.id)}>
             <SaveRoundedIcon />
-            保存
-          </ClickButton>
+          </ButtonGhost>
         </>
       ) : (
         // 編集中でない場合
         <>
           <div className="w-full px-3 truncate">{text}</div>
-          <ClickButton onClick={() => handleEditButtonClick(item.id)}>
+          <ButtonGhost onClick={() => handleEditButtonClick(item.id)}>
             <EditRoundedIcon />
-            編集
-          </ClickButton>
+          </ButtonGhost>
         </>
       )}
     </div>

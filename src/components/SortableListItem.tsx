@@ -4,8 +4,9 @@ import { CSS } from '@dnd-kit/utilities';
 import { Item } from '../types';
 import DragHandleRoundedIcon from '@mui/icons-material/DragHandleRounded';
 import { EditableText } from './EditableText';
-import { ClickButton } from './ClickButton';
 import { useItemListContext } from '../hooks/useItemListContext';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import { ButtonGhost } from './Button/ButtonGhost';
 
 type Props = {
   item: Item;
@@ -34,7 +35,9 @@ export const SortableListItem: FC<Props> = ({ item }) => {
       </div>
       <div className="flex pl-2 w-full items-center min-w-0">
         <EditableText item={item} />
-        <ClickButton onClick={() => removeItem(item.id)}>削除</ClickButton>
+        <ButtonGhost onClick={() => removeItem(item.id)}>
+          <DeleteRoundedIcon />
+        </ButtonGhost>
       </div>
     </div>
   );
